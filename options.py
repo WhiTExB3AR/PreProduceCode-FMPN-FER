@@ -28,6 +28,7 @@ class Options(object):
         parser.add_argument('--visdom_env', type=str, default="main", help='visdom env.')
         parser.add_argument('--visdom_port', type=int, default=8097, help='visdom port.')
         parser.add_argument('--visdom_display_id', type=int, default=1, help='set value larger than 0 to display with visdom.')
+        parser.add_argument('--visdom_ip', type=str, default="http://localhost", help='visdom IP from ngrok.')
         
         parser.add_argument('--data_root', required=True, help='paths to data set.')
         parser.add_argument('--train_csv', type=str, default="train_ids.csv", help='train images paths')

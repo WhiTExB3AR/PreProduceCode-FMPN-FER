@@ -29,7 +29,8 @@ class Visualizer(object):
         if self.display_id > 0:
             import visdom 
             self.ncols = 4
-            self.vis = visdom.Visdom(server="http://localhost", port=self.opt.visdom_port, env=self.opt.visdom_env)
+            # self.vis = visdom.Visdom(server="http://localhost", port=self.opt.visdom_port, env=self.opt.visdom_env)
+            self.vis = visdom.Visdom(server=self.opt.visdom_ip, port=self.opt.visdom_port, env=self.opt.visdom_env)
 
     def throw_visdom_connection_error(self):
         print('\n\nno visdom server.')
