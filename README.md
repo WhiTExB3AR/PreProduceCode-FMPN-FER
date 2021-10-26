@@ -79,6 +79,18 @@ python manage.py runserver
 * pytorch >= 0.4.1
 * visdom == 0.1.8.9
 
+### Add tunnel to run visdom in colab
+
+``` sh
+1. pip install nest_asyncio, pyngrok
+2. open 2 terminal :
+      2.1 python -m visdom.server -port 8097
+      2.2 python tunnel.py
+3. In line 32 of visualizer.py
+      3.1 copy/paste the link from step 2.2 to server= "<link>"
+      3.2 change port to 80
+```
+
 ### Training
 
 The training phase mainly contains two stages, including training the generator for generating facial motion mask, and jointly training the whole recognition network. Running scripts examples are given as below. 
