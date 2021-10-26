@@ -18,6 +18,61 @@ Official PyTorch Implementation of **Facial Motion Prior Networks for Facial Exp
 
 ## Setup
 
+#### To get this project up and running you should start by having Python installed on your computer. It's advised you create a virtual environment to store your projects dependencies separately. You can install virtualenv with
+
+``` sh
+pip install virtualenv
+```
+
+#### Clone or download this repository and open it in your editor of choice. In a terminal (mac/linux) or windows terminal, run the following command in the base directory of this project
+
+``` sh
+virtualenv env
+```
+
+#### Check and set ExecutionPolicy on Windows follow this tutorial:
+``` sh
+1. Open VSCode as Adminstrator
+2. Open Terminal
+3. Type <powershell>
+4. Type <Get-ExecutionPolicy>. If it return Restricted, continue to next step
+5. Type <Set-ExecutionPolicy –ExecutionPolicy RemoteSigned>
+6. Check again by type <Get-ExecutionPolicy>
+7. Close VSCode and open normal again.
+```
+
+#### That will create a new folder env in your project directory. Next activate it with this command on Windows:
+
+``` sh
+env\Scripts\activate
+```
+or Mac/Linux:
+``` sh
+source env/bin/active
+```
+
+#### Deactivate it with this command on Windows:
+
+``` sh
+deactivate
+```
+
+#### Then install the project dependencies with
+
+``` sh
+pip install -r requirements.txt
+```
+
+#### Now you can run the project with this command
+
+``` sh
+python manage.py runserver
+```
+
+**Note** if you want payments to work you will need to enter your own Stripe API keys into the `.env` file in the settings files.
+
+---
+
 ### Prerequisites
 
 * python >= 3.6
