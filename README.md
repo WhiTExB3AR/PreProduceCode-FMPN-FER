@@ -31,10 +31,11 @@ The training phase mainly contains two stages, including training the generator 
 #### Pretrain the Facial-Motion Mask Generator (FMG)
 
 ``` sh
-python main.py --mode train --data_root datasets/CKPlus --train_csv train_ids_0.csv \
-    --print_losses_freq 4 --use_data_augment --visdom_env res_baseline_ckp_0 \
-    --niter 150 --niter_decay 150 --gpu_ids 0 \
+python main.py --mode train --data_root datasets/CKPlus --train_csv train_ids_8.csv \
+    --print_losses_freq 4 --use_data_augment --visdom_env main \
+    --niter 50 --niter_decay 50 --gpu_ids 0 --batch_size 16 \
     --model res_baseline --solver resface --img_nc 1 \
+    --visdom_port 80 --visdom_ip http://6f46-2405-4800-52a7-232f-ed31-dec5-a662-7c6d.ngrok.io \
     /
 ```
 
@@ -43,20 +44,22 @@ python main.py --mode train --data_root datasets/CKPlus --train_csv train_ids_0.
 Load the saved weight for the FMG pertained in the previous stage, and ImageNet pretrained weight for the Classifer Net.
 
 ```sh
-python main.py --mode train --data_root datasets/CKPlus --train_csv train_ids_0.csv \
-    --print_losses_freq 4 --use_data_augment --visdom_env res_cls_ckp_0 --niter 100 \
-    --niter_decay 100 --gpu_ids 0 --model res_cls --solver res_cls --lambda_resface 0.1 \
+python main.py --mode train --data_root datasets/CKPlus --train_csv train_ids_8.csv \
+    --print_losses_freq 4 --use_data_augment --visdom_env res_cls_ckp_0 --niter 5 \
+    --niter_decay 5 --gpu_ids 0 --model res_cls --solver res_cls --lambda_resface 0.1 \
     --batch_size 16 --backend_pretrain \
-    --load_model_dir ckpts/CKPlus/res_baseline/fold_0/190117_165651 --load_epoch 300 \
+    --load_model_dir ckpts/CKPlus/res_baseline/fold_8/211024_033139 --load_epoch 100 \
+    --visdom_port 80 --visdom_ip http://6f46-2405-4800-52a7-232f-ed31-dec5-a662-7c6d.ngrok.io \
     /
 ```
 
 ### Testing 
 
 ``` sh
-python main.py --mode test --data_root datasets/CKPlus --test_csv test_ids_0.csv \
-    --gpu_ids 0 --model res_cls --solver res_cls --batch_size 4 \
-    --load_model_dir ckpts/CKPlus/res_cls/fold_0/190118_170050 --load_epoch 200 \
+python main.py --mode test --data_root datasets/CKPlus --test_csv test_ids_1.csv \
+    --gpu_ids 0 --model res_cls --solver res_cls --batch_size 2 \
+    --load_model_dir ckpts/CKPlus/res_cls/fold_8/211024_105415 --load_epoch 10 \
+    --visdom_port 80 --visdom_ip http://6f46-2405-4800-52a7-232f-ed31-dec5-a662-7c6d.ngrok.io \
     /
 ```
 
