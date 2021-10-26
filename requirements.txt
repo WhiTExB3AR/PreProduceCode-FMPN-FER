@@ -3,3 +3,6 @@ torch
 torchvision
 torchaudio
 fastai
+pyngrok
+nest_asyncio
+opencv-python 
