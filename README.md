@@ -44,7 +44,8 @@ virtualenv env
 #### That will create a new folder env in your project directory. Next activate it with this command on Windows:
 
 ``` sh
-env\Scripts\activate
+1. env\Scripts\activate
+2. or: e:/THESIS/GITHUB/PreProduceCode-FMPN-FER/env/Scripts/Activate.ps1
 ```
 or Mac/Linux:
 ``` sh
