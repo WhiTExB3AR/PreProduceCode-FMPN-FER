@@ -80,6 +80,6 @@ class ResFaceClsSolver(BaseSolver):
         msg = "Acc: %.3f(%d/%d)" % (acc, acc_num, len(dataset))
         print("=======> ", msg)
         print("Real label list: ", real_cls_list, "\nPredict label list: ", pred_cls_list)
-
+        
         return acc, msg, confusion_mat, results_dict
 
