@@ -80,6 +80,13 @@ python manage.py runserver
 * pytorch >= 0.4.1
 * visdom == 0.1.8.9
 
+### Check CUDA
+
+``` sh
+nvcc --version
+nvidia-smi
+```
+
 ### Add tunnel to run visdom in colab
 
 ``` sh
