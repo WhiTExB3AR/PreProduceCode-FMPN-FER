@@ -22,7 +22,7 @@ class DataLoader:
     def name(self):
         return self.dataset.name() + "_Loader"
 
-    def create_datase(self):
+    def create_dataset(self):
         # specify which dataset to load here
         loaded_dataset = os.path.basename(self.opt.data_root.strip('/'))
         if 'CK' in loaded_dataset:
@@ -38,7 +38,7 @@ class DataLoader:
 
     def initialize(self, opt):
         self.opt = opt
-        self.dataset = self.create_datase()
+        self.dataset = self.create_dataset()
         self.dataloader = torch.utils.data.DataLoader(
             self.dataset,
             batch_size=opt.batch_size,
