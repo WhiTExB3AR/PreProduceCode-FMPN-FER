@@ -41,8 +41,10 @@ class BaseDataset(torch.utils.data.Dataset):
 
     def img_transform(self, img, use_data_augment=False, norm_tensor=False, lucky_dict={}):
         if norm_tensor:
-            img2tensor = transforms.Compose([transforms.ToTensor(),
-                                transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+            img2tensor = transforms.Compose([
+                transforms.ToTensor(),
+                transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+                ])
         else:
             img2tensor = transforms.ToTensor()
 
