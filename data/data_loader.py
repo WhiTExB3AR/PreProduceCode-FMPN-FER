@@ -17,6 +17,9 @@ def create_dataloader(opt):
     data_loader.initialize(opt)
     return data_loader
 
+# Khi cho dữ liệu vào model để học thì thông thường sẽ cho dữ liệu theo từng batch một.
+# DataLoader sẽ giúp chúng ta lấy dữ liệu theo từng batch, shuffle dữ liệu 
+# cũng như load dữ liệu song song với nhiều multiprocessing workers.
 
 class DataLoader:
     def name(self):
