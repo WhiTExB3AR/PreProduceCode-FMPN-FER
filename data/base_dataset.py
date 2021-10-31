@@ -41,12 +41,12 @@ class BaseDataset(torch.utils.data.Dataset):
 
     def img_transform(self, img, use_data_augment=False, norm_tensor=False, lucky_dict={}):
         if norm_tensor:
-            img2tensor = transforms.Compose([
+            img2tensor = transforms.Compose([ # Để thực hiện nhiều phép biến đổi trên dữ liệu đầu vào, transforms hỗ trợ hàm compose để gộp các transforms lại.
                 transforms.ToTensor(),
-                transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+                transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)) # Tham số đầu là mean, tham số sau là std => T.Normalize(mean, std)
                 ])
         else:
-            img2tensor = transforms.ToTensor()
+            img2tensor = transforms.ToTensor() # Dữ liệu mình lấy được ở trên thì ảnh ở dạng PIL image, mình cần convert về dạng Torch tensor để cho Pytorch xử lý và tính toán.
 
         img = transforms.functional.resize(img, self.opt.load_size)
         # on-the-fly data augmentation
