@@ -8,14 +8,14 @@ import cv2
 import os
 
 # construct the argument parser and parse the arguments
-ap = argparse.ArgumentParser()
-ap.add_argument("-i", "--image", type=str, required=True,
+parser = argparse.ArgumentParser()
+parser.add_argument("-i", "--image", type=str, required=True,
 	help="path to input image")
-ap.add_argument("-c", "--cascade", type=str,
+parser.add_argument("-c", "--cascade", type=str,
 	# default=os.path.dirname(cv2.__file__)+"/data/haarcascade_frontalface_default.xml",
 	default=os.path.dirname(cv2.__file__)+"/data/face_detector.xml",
 	help="path to haar cascade face detector")
-args = vars(ap.parse_args())
+args = vars(parser.parse_args())
 
 # load the haar cascade face detector from
 print("[INFO] loading face detector...")
