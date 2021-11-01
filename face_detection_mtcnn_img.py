@@ -8,7 +8,7 @@ detector = MTCNN()
 
 # construct the argument parser and parse the arguments
 parser = argparse.ArgumentParser()
-parser.add_argument("-i", "--image", type=str, required=True,
+parser.add_argument("-img", "--image", type=str, required=True,
 	help="path to input image")
 args = vars(parser.parse_args())
 
