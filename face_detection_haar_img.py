@@ -9,7 +9,7 @@ import os
 
 # construct the argument parser and parse the arguments
 parser = argparse.ArgumentParser()
-parser.add_argument("-i", "--image", type=str, required=True,
+parser.add_argument("-img", "--image", type=str, required=True,
 	help="path to input image")
 parser.add_argument("-c", "--cascade", type=str,
 	# default=os.path.dirname(cv2.__file__)+"/data/haarcascade_frontalface_default.xml",
