@@ -2,6 +2,8 @@
 
 import argparse
 import imutils
+# imutils for crop, rotation and resize (also can transition, get edge, plat 3D to 2D and visualize in matplotlib)
+# https://github.com/PyImageSearch/imutils
 import cv2
 import os
 from PIL import Image # can use for crop image
