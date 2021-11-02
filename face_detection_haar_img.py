@@ -40,7 +40,7 @@ print("[INFO] performing face detection...")
 faces_result = detector.detectMultiScale(
     gray, 
     scaleFactor = 1.05,
-	minNeighbors = 7, 
+	minNeighbors = 25, 
     minSize = (30, 30),
 	flags = cv2.CASCADE_SCALE_IMAGE)
 print("[INFO] {} faces detected...".format(len(faces_result)))
@@ -60,7 +60,7 @@ for (x, y, w, h) in faces_result:
 # ------- Start: split to file name -------
 # 1. using pathlib
 file_name_pathlib = Path(args["image"]).stem
-print(file_name_pathlib)
+print("Got the file name original: ", file_name_pathlib)
 
 # # 2. using os module basename and splitext
 # base_name = os.path.basename(args["image"])
@@ -99,6 +99,7 @@ for (x, y, w, h) in faces_result:
                 '.png', 
                 crop_face)
     cv2.imshow("Cropped face.png", crop_face)
+    i = i + 1
     count = count - 1
     if (count < 0): # no face focus found in len(faces_result)
         break
