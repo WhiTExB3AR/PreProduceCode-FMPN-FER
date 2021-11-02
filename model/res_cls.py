@@ -74,7 +74,7 @@ class ResClsModel(BaseModel):
         # self.focus_face = self.focus_face.expand(self.focus_face.size(0), self.opt.img_nc, self.focus_face.size(2), self.focus_face.size(3))
         # self.pred_cls = self.net_cls(self.focus_face)
 
-    def backward(self):
+    def backward(self): # đạo hàm
         self.loss_cls = self.criterionCE(self.pred_cls, self.real_cls)
         self.loss_resface = self.criterionMSE(self.gen_resface, self.real_resface)
 
