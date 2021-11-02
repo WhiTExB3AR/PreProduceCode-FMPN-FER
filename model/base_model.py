@@ -20,7 +20,8 @@ class BaseModel:
     def setup(self):
         if self.is_train:
             self.set_train()
-            self.criterionCE = torch.nn.CrossEntropyLoss().to(self.device)
+            # Hàm CrossEntropyLoss của Pytorch đã bao gồm cả activation softmax ở lớp output và categorial crossentropy loss thế nên khi dựng model không cần dùng activation softmax ở output layer.
+            self.criterionCE = torch.nn.CrossEntropyLoss().to(self.device) 
             torch.nn.DataParallel(self.criterionCE, self.gpu_ids)
             self.criterionMSE = torch.nn.MSELoss().to(self.device)
             torch.nn.DataParallel(self.criterionMSE, self.gpu_ids)
