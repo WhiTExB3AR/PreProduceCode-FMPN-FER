@@ -32,7 +32,7 @@ class BaseModel:
         else:
             self.set_eval()
 
-    def set_eval(self):
+    def set_eval(self): # test setting
         print("Set model to Test state.")
         for name in self.models_name:
             if isinstance(name, str):
