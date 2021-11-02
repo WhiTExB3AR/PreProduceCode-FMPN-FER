@@ -104,7 +104,7 @@ for i in range(len(faces_result)):
     w = bounding_box[1] + bounding_box[3]
     h = bounding_box[0] + bounding_box[2]
     crop_face = gray[x:w, y:h]
-    cv2.imwrite('images/results/face_focus/' +
+    cv2.imwrite('images/results/face_focus/mtcnn' +
                 str(file_name_pathlib) +
                 '_MTCNN_face_' +
                 str(i) +
