@@ -139,9 +139,8 @@ python main.py --mode test --data_root datasets/CKPlus --test_csv test_ids_1.csv
 ```
 ### Testing in VS Code need to change number of worker to 1 to decrease less RAM for run test.
 
-`` sh 
+``` sh 
 Watch explain here: https://github.com/ultralytics/yolov3/issues/1643#issuecomment-755254615
-/
 ```
 
 ``` sh
