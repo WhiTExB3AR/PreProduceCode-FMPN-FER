@@ -1,4 +1,7 @@
 # https://github.com/ipazc/mtcnn
+# USAGE
+# python face_detection_mtcnn_img.py --image images\face_detection\team_hlv_tram_anhnguyen_hop.jpg
+
 
 import argparse
 import imutils
