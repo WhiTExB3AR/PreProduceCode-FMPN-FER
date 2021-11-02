@@ -52,7 +52,7 @@ class ResGenModel(BaseModel):
     def backward(self):
         self.loss_resface = self.criterionMSE(self.gen_resface, self.real_resface)
         self.loss_total = self.loss_resface
-        self.loss_total.backward()
+        self.loss_total.backward() # để tính đạo hàm của Loss
 
     def optimize_paras(self):
         self.forward()
