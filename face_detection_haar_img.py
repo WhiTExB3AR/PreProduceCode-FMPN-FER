@@ -44,6 +44,10 @@ faces_result = detector.detectMultiScale(
     minSize = (30, 30),
 	flags = cv2.CASCADE_SCALE_IMAGE)
 print("[INFO] {} faces detected...".format(len(faces_result)))
+count = 0
+for i in range(len(faces_result)):
+    count = count + 1
+
 
 # loop over the bounding boxes
 for (x, y, w, h) in faces_result:
@@ -84,16 +88,20 @@ print('=> Successfully saved face detection rectangle and show each face now')
 
 # ------- Start: Crop face -------
 # 1. using OpenCV
+i = 0 # for each face focus
 for (x, y, w, h) in faces_result:
     print(x,y,w,h)
     crop_face = gray[y:y+h, x:x+w]
-    # cv2.imwrite('images/results/face_focus/' +
-    #             str(file_name_pathlib) +
-    #             '_face_' +
-    #             str(i) +
-    #             '.png', 
-    #             crop_face)
+    cv2.imwrite('images/results/face_focus/' +
+                str(file_name_pathlib) +
+                'HAAR_face_' +
+                str(i) +
+                '.png', 
+                crop_face)
     cv2.imshow("Cropped face.png", crop_face)
+    count = count - 1
+    if (count < 0): # no face focus found in len(faces_result)
+        break
     cv2.waitKey(0)
 
 # # 2. using PIL
