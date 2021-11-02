@@ -23,6 +23,7 @@ args = vars(parser.parse_args())
 # image_org = cv2.cvtColor(cv2.imread(args["image"]), cv2.COLOR_BGR2RGB)
 # faces_result = detector.detect_faces(image_org)
 image_org = cv2.imread(args["image"])
+gray = cv2.cvtColor(image_org, cv2.COLOR_BGR2GRAY)
 rgb = cv2.cvtColor(image_org, cv2.COLOR_BGR2RGB)
 faces_result = detector.detect_faces(rgb)
 
@@ -62,10 +63,6 @@ for i in range(len(faces_result)):
 print("[INFO] {} faces detected...".format(len(faces_result)))
 print("[Face result landmark] ", faces_result)
 
-# Save img_detected
-img_detected = cv2.cvtColor(rgb, cv2.COLOR_RGB2BGR)
-gray = cv2.cvtColor(img_detected, cv2.COLOR_BGR2GRAY)
-
 # ------- Start: split to file name -------
 # 1. using pathlib
 file_name_pathlib = Path(args["image"]).stem
@@ -92,7 +89,7 @@ cv2.imwrite('images/results/detected_rectangle/' +
             "Face Detected_" + 
             str(file_name_pathlib) + 
             ".png", 
-            img_detected)
+            cv2.cvtColor(rgb, cv2.COLOR_RGB2BGR)) # Convert img detected in line 28 from rgb to bgr 
 print('=> Successfully saved face detection rectangle and show each face now')
 
 # ------- Start: Crop face -------
@@ -103,7 +100,7 @@ for i in range(len(faces_result)):
     x = bounding_box[1]
     w = bounding_box[1] + bounding_box[3]
     h = bounding_box[0] + bounding_box[2]
-    crop_face = image_org[x:w, y:h]
+    crop_face = gray[x:w, y:h]
     cv2.imwrite('images/results/face_focus/' +
                 str(file_name_pathlib) +
                 '_face_' +
