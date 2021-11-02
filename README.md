@@ -156,18 +156,7 @@ python main.py --mode test --data_root datasets/CKPlus --test_csv test_ids_1.csv
 * The pseudo ground truth facial motion masks for dataset CK+, MMI and AffectNet are presented in `/datasets`.
 * Training and Testing datasets splits are located in `/datasets`, 10-fold cross validation is used in the project as a general approach.
 
-## Results Detail
-
-10 folds accuracy for CK+, MMI and AffectNet.
-
-| Fold ID   | 0     | 1     | 2     | 3     | 4     | 5     | 6     | 7     | 8     | 9     | Avg  |
-|-----------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|------|
-| CK+       | 0.885 | 1.000 | 0.921 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 0.98 |
-| MMI       | 0.778 | 0.731 | 0.667 | 0.744 | 0.857 | 0.855 | 0.958 | 0.889 | 1.000 | 0.795 | 0.83 |
-| AffectNet | -     | -     | -     | -     | -     | -     | -     | -     | -     | -     | 0.62 |
-
-
-## Citation
+## Citation - References
 
 If you use this code for your research, please cite our paper <a href="https://arxiv.org/abs/1902.08788">Facial Motion Prior Networks for Facial Expression Recognition</a>:
 
@@ -180,7 +169,3 @@ If you use this code for your research, please cite our paper <a href="https://a
   organization={IEEE}
 }
 ```
-
-## Acknowledgments
-
-This work is mainly conducted when Yuedong is a research intern in Lenovo AI Lab, Beijing. For any questions regarding this project, feel free to create an issue or reach Yuedong by Email.
