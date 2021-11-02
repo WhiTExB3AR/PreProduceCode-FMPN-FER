@@ -124,9 +124,18 @@ class Options(object):
                     #       print(file_name) -> train_ids_0
                     #       print(file_extension) -> .csv
                 # Lưu ý, do trong kết quả của hàm splitext() sẽ bao gồm cả dấu chấm '.' ở trong đuôi file -> nên sử dụng kết hợp với strip('.')
-                # hoặc '_' ở phần trước đuôi file, do đó nên sử dụng kết hợp với split('_')
                     # vd:   print(name_tuple[1].strip(".")) -> csv 
                     # hoặc  print(file_extension.strip(".")) -> csv
+                # hoặc '_' ở phần trước đuôi file, do đó nên sử dụng kết hợp với split('_')
+                # split() để lấy tên file kèm tên thư mục chứa nó, hàm sẽ tách đường dẫn chỉ định thành hai phần, tại vị trí dấu phân cách đường dẫn cuối cùng bên phải, sau đó lưu giữ kết quả vào một tuple.
+                    # vd:   path = './PreProduceCode-FMPN-FER/datasets/CKPlus/train_ids_0.csv'
+                    #       print(os.path.split(path)) -> ('./PreProduceCode-FMPN-FER/datasets/CKPlus', 'train_ids_0.csv') = files
+                    #       print(files[0]) -> ./PreProduceCode-FMPN-FER/datasets/CKPlus
+                    #       print(files[1]) -> train_ids_0.csv
+                    # hoặc dùng cách như sau để truy cập nhanh hơn
+                    #       dir_name, base_name = os.path.split(path)
+                    #       print(dir_name) -> ./PreProduceCode-FMPN-FER/datasets/CKPlus
+                    #       print(base_name) -> train_ids_0.csv
             # print(os.path.splitext(opt.train_csv)[0]) -> train_ids_0 = aka
             # print(aka.split('_')) ->  ['train', 'ids', '0'] = tmp_list
 
