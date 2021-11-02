@@ -55,7 +55,7 @@ class BaseSolver(object):
             self.FACIAL_EXPRESSION = self.OC_FACIAL_EXPRESSION
 
         self.train_total_steps = 0
-        self.epoch_len = self.opt.niter + self.opt.niter_decay
+        self.epoch_len = self.opt.niter + self.opt.niter_decay # total epoch calculated from params niter and niter_decay in options.py
         self.cur_lr = self.opt.lr
 
     def train_epoch(self, epoch):
