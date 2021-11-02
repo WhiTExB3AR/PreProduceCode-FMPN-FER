@@ -89,7 +89,7 @@ print(file_name_pathlib)
 
 # Save the image with rectangle face detection
 cv2.imwrite('images/results/detected_rectangle/' + 
-            "Detected Image_" + 
+            "Face Detected_" + 
             str(file_name_pathlib) + 
             ".png", 
             img_detected)
