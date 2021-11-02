@@ -48,7 +48,7 @@ for i in range(len(faces_result)):
         rgb,
         (bounding_box[0], bounding_box[1]),
         (bounding_box[0]+bounding_box[2], bounding_box[1] + bounding_box[3]),
-        (0,155,255),
+        (255,155,0),
         2 # width of line of box
     )
 
@@ -86,7 +86,7 @@ print(file_name_pathlib)
 
 # Save the image with rectangle face detection
 cv2.imwrite('images/results/detected_rectangle/' + 
-            "Face Detected_" + 
+            "Face Detected MTCNN_" + 
             str(file_name_pathlib) + 
             ".png", 
             cv2.cvtColor(rgb, cv2.COLOR_RGB2BGR)) # Convert img detected in line 28 from rgb to bgr 
@@ -103,7 +103,7 @@ for i in range(len(faces_result)):
     crop_face = gray[x:w, y:h]
     cv2.imwrite('images/results/face_focus/' +
                 str(file_name_pathlib) +
-                '_face_' +
+                '_MTCNN_face_' +
                 str(i) +
                 '.png', 
                 crop_face)
