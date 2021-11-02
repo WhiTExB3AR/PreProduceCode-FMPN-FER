@@ -61,12 +61,15 @@ for i in range(len(faces_result)):
 # cv2.circle(image,(keypoints['mouth_right']), 2, (0,155,255), 2)
 
 print("[INFO] {} faces detected...".format(len(faces_result)))
-print("[Face result landmark] ", faces_result)
+## print all result from JSON file faces_result
+# print("[Face result landmark] ", faces_result) 
+for i in range(len(faces_result)):
+    print(faces_result[i]['box'], faces_result[i]['confidence'])
 
 # ------- Start: split to file name -------
 # 1. using pathlib
 file_name_pathlib = Path(args["image"]).stem
-print(file_name_pathlib)
+print("Got the file name original: ", file_name_pathlib)
 
 # # 2. using os module basename and splitext
 # base_name = os.path.basename(args["image"])
