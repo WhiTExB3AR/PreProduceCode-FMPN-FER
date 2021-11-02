@@ -87,16 +87,54 @@ class Options(object):
 
     def parse(self):
         parser = self.initialize()
-        parser.set_defaults(name=datetime.now().strftime("%y%m%d_%H%M%S"))
+        parser.set_defaults(name = datetime.now().strftime("%y%m%d_%H%M%S"))
         opt = parser.parse_args()
 
         # update checkpoint dir
         if opt.mode == 'train':
-            dataset_name = os.path.basename(opt.data_root.strip('/'))
-            tmp_list = os.path.splitext(opt.train_csv)[0].split('_')
+            dataset_name = os.path.basename(opt.data_root.strip('/'))  
+                # basename() dùng để lấy đối tượng là tên file cuối trong đường dẫn 
+                # dirname() dùng để lấy đối tượng là đường dẫn cùng thư mục mẹ của file cuối trong đường dẫn
+                # vd:   path = './PreProduceCode-FMPN-FER/datasets/CKPlus/train_ids_0.csv'
+                #       print(os.path.basename(folderpath)) -> train_ids_0.csv
+                #       print(os.path.dirname(folderpath)) -> ./PreProduceCode-FMPN-FER/datasets/CKPlus
+                # strip('./') xoá dấu '/' và '.' ở đầu và đuôi của data_root 
+                # vd: ./PreProduceCode-FMPN-FER/datasets/CKPlus/ -> PreProduceCode-FMPN-FER/datasets/CKPlus
+            # /datasets/CKPlus/ -> datasets/CKPlus
+
+            tmp_list = os.path.splitext(opt.train_csv)[0].split('_') 
+                # splitext() để chia filename thành 2 phần trước và sau dấu '.' 
+                # Lưu ý: chỉ tách đối số được chỉ định thành hai phần tại vị trí dấu chấm cuối cùng bên phải
+                    # vd:   path = './PreProduceCode-FMPN-FER/datasets/CKPlus/train_ids_0.csv'
+                    #
+                    #1.     base_name = os.path.basename(path)
+                    #       print(basename) -> train_ids_0.csv
+                    #
+                    #2.     name_tuple = os.path.splitext(base_name)
+                    #       print(name_tuple) -> ('train_ids_0', '.csv')
+                    #
+                    #3.     filename = name_tuple[0]
+                    #       print(filename) -> train_ids_0
+                    #
+                    #4.     file_extension = name_tuple[1]
+                    #       print(file_extension) -> .csv
+                    #
+                    # hoặc dùng cách như sau để truy cập nhanh hơn
+                    #       file_name, file_extension = os.path.splitext(base_name)
+                    #       print(file_name) -> train_ids_0
+                    #       print(file_extension) -> .csv
+                # Lưu ý, do trong kết quả của hàm splitext() sẽ bao gồm cả dấu chấm '.' ở trong đuôi file -> nên sử dụng kết hợp với strip('.')
+                # hoặc '_' ở phần trước đuôi file, do đó nên sử dụng kết hợp với split('_')
+                    # vd:   print(name_tuple[1].strip(".")) -> csv 
+                    # hoặc  print(file_extension.strip(".")) -> csv
+            # print(os.path.splitext(opt.train_csv)[0]) -> train_ids_0 = aka
+            # print(aka.split('_')) ->  ['train', 'ids', '0'] = tmp_list
+
             fold_id = "." if len(tmp_list) < 3 else ("fold_%s" % tmp_list[2])
+            # tmp_list[2] = 0 -> "fold_%s" % tmp_list[2] = fold_0
             opt.ckpt_dir = os.path.join(opt.ckpt_dir, dataset_name, opt.model, fold_id, opt.name)
-            if not os.path.exists(opt.ckpt_dir):
+            # ckpt_dir = default='./ckpts' -> ./ckpts/
+            if not os.path.exists(opt.ckpt_dir): # kiểm tra đã có folder tên ckpts chưa, nếu chưa thì tạo makedirs("./ckpts") -> PreProduceCode-FMPN-FER/ckpts
                 os.makedirs(opt.ckpt_dir)
 
         # set gpu device
