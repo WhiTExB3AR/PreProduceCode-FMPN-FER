@@ -1,5 +1,5 @@
 # USAGE
-# python haar_face_detector.py --image images/adrian_01.png
+# python face_detection_haar_img.py --image images\face_detection\team_hlv_tram_anhnguyen_hop.jpg
 
 # import the necessary packages
 import argparse
