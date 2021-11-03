@@ -20,20 +20,37 @@ class ResClsModel(BaseModel):
 
     def initialize(self, opt):
         super(ResClsModel, self).initialize(opt)
-        self.net_resface = model_utils.define_ResFaceGenNet(input_nc=1, \
-                                img_size=self.opt.final_size, ngf=64, norm=self.opt.res_norm, \
-                                use_dropout=self.opt.res_use_dropout, n_blocks=self.opt.res_n_blocks, \
-                                init_type=self.opt.init_type, init_gain=self.opt.init_gain, gpu_ids=self.gpu_ids)
+        self.net_resface = model_utils.define_ResFaceGenNet(
+            input_nc = 1,
+            img_size = self.opt.final_size,
+            ngf = 64,
+            norm = self.opt.res_norm,
+            use_dropout = self.opt.res_use_dropout,
+            n_blocks = self.opt.res_n_blocks,
+            init_type = self.opt.init_type,
+            init_gain = self.opt.init_gain,
+            gpu_ids = self.gpu_ids)
         self.models_name.append('resface')
 
-        self.net_fusion = model_utils.define_FusionNet(input_a_nc=3, input_b_nc=1, init_type=self.opt.init_type, \
-                                init_gain=self.opt.init_gain, gpu_ids=self.gpu_ids)
+        self.net_fusion = model_utils.define_FusionNet(
+            input_a_nc = 3,
+            input_b_nc = 1,
+            init_type = self.opt.init_type,
+            init_gain = self.opt.init_gain,
+            gpu_ids = self.gpu_ids)
         self.models_name.append('fusion')
 
-        self.net_cls = model_utils.define_ClassifierNet(3, image_size=self.opt.final_size, \
-                    n_classes=self.opt.cls_nc, norm=self.opt.cls_norm, use_dropout=self.opt.use_cls_dropout, \
-                    init_type=self.opt.init_type, init_gain=self.opt.init_gain, gpu_ids=self.gpu_ids, \
-                    backend=self.opt.cls_backend, backend_pretrain=self.opt.backend_pretrain)
+        self.net_cls = model_utils.define_ClassifierNet(
+            3,
+            image_size = self.opt.final_size,
+            n_classes = self.opt.cls_nc,
+            norm = self.opt.cls_norm,
+            use_dropout = self.opt.use_cls_dropout,
+            init_type = self.opt.init_type,
+            init_gain = self.opt.init_gain,
+            gpu_ids = self.gpu_ids,
+            backend = self.opt.cls_backend,
+            backend_pretrain = self.opt.backend_pretrain)
         self.models_name.append('cls')
 
     def setup(self):
@@ -42,11 +59,11 @@ class ResClsModel(BaseModel):
             self.losses_name.append('resface')
             self.losses_name.append('cls')
 
-            self.optim_cls = torch.optim.Adam([
-                                {'params': self.net_cls.parameters()},
-                                {'params': self.net_fusion.parameters()},
-                                {'params': self.net_resface.parameters(), 'lr': self.opt.res_lr}
-                            ], lr=self.opt.lr, betas=(self.opt.beta1, 0.999))
+            self.optim_cls = torch.optim.Adam(
+                [   { 'params': self.net_cls.parameters() },
+                    { 'params': self.net_fusion.parameters() },
+                    { 'params': self.net_resface.parameters(), 'lr': self.opt.res_lr }  ], 
+                lr = self.opt.lr, betas = (self.opt.beta1, 0.999))
             self.optims.append(self.optim_cls)
 
             self.schedulers.append(model_utils.get_scheduler(self.optim_cls, self.opt))
@@ -79,7 +96,7 @@ class ResClsModel(BaseModel):
         self.loss_resface = self.criterionMSE(self.gen_resface, self.real_resface)
 
         self.loss_total = self.loss_cls * self.opt.lambda_cls + \
-                            self.loss_resface * self.opt.lambda_resface
+                          self.loss_resface * self.opt.lambda_resface
         self.loss_total.backward()
 
     def optimize_paras(self):
