@@ -214,9 +214,13 @@ class ResnetBlock(nn.Module):
         else:
             raise NotImplementedError('padding [%s] is not implemented' % padding_type)
 
-        conv_block += [nn.Conv2d(dim, dim, kernel_size=3, padding=p, bias=use_bias),
+        conv_block += [nn.Conv2d(dim, dim, 
+                                kernel_size = 3, 
+                                padding = p, 
+                                bias = use_bias),
                        norm_layer(dim),
-                       nn.PReLU()]  # change from ReLU to PReLU
+                       nn.PReLU()] # change from ReLU to PReLU
+          
         if use_dropout:
             conv_block += [nn.Dropout(0.5)]
 
@@ -229,9 +233,12 @@ class ResnetBlock(nn.Module):
             p = 1
         else:
             raise NotImplementedError('padding [%s] is not implemented' % padding_type)
-        conv_block += [nn.Conv2d(dim, dim, kernel_size = 3, padding = p, bias = use_bias),
+        conv_block += [nn.Conv2d(dim, dim, 
+                                kernel_size = 3, 
+                                padding = p, 
+                                bias = use_bias),
                        norm_layer(dim),
-                       nn.PReLU()]  # add activation
+                       nn.PReLU()] # add activation
 
         return nn.Sequential(*conv_block)
 
