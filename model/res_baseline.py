@@ -20,9 +20,16 @@ class ResGenModel(BaseModel):
          
     def initialize(self, opt):
         super(ResGenModel, self).initialize(opt)
-        self.net_resface = model_utils.define_ResFaceGenNet(input_nc=1, img_size=self.opt.final_size, ngf=64, norm=self.opt.res_norm, \
-                                use_dropout=self.opt.res_use_dropout, n_blocks=self.opt.res_n_blocks, \
-                                init_type=self.opt.init_type, init_gain=self.opt.init_gain, gpu_ids=self.gpu_ids)
+        self.net_resface = model_utils.define_ResFaceGenNet(
+            input_nc = 1, 
+            img_size = self.opt.final_size, 
+            ngf = 64,
+            norm = self.opt.res_norm, 
+            use_dropout = self.opt.res_use_dropout,
+            n_blocks = self.opt.res_n_blocks,
+            init_type = self.opt.init_type,
+            init_gain = self.opt.init_gain,
+            gpu_ids = self.gpu_ids)
         self.models_name.append('resface')
     
     def setup(self):
@@ -30,8 +37,11 @@ class ResGenModel(BaseModel):
         if self.is_train:
             self.losses_name.append('resface')
 
-            self.optim_resface = torch.optim.Adam(self.net_resface.parameters(), 
-                        lr=self.opt.lr, betas=(self.opt.beta1, 0.999))
+            self.optim_resface = torch.optim.Adam(
+                self.net_resface.parameters(), 
+                lr = self.opt.lr, 
+                betas = (self.opt.beta1, 0.999))
+
             self.optims.append(self.optim_resface)
 
             self.schedulers.append(model_utils.get_scheduler(self.optim_resface, self.opt))
@@ -47,7 +57,7 @@ class ResGenModel(BaseModel):
             self.real_resface = batch['img_res_tensor'].to(self.device)
 
     def forward(self):
-        self.gen_resface, self.resface_features = self.net_resface(self.real_img)
+        self.gen_resface, self.resface_features = self.net_resface(self.real_img) # đưa ảnh vào giai đoạn jontly-train
 
     def backward(self):
         self.loss_resface = self.criterionMSE(self.gen_resface, self.real_resface)
