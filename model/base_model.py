@@ -48,7 +48,7 @@ class BaseModel:
                 net.train()
         self.is_train = True
 
-    def set_requires_grad(self, parameters, requires_grad=False):
+    def set_requires_grad(self, parameters, requires_grad = False):
         if not isinstance(parameters, list):
             parameters = [parameters]
         for param in parameters:
