@@ -44,9 +44,9 @@ class DataLoader:
         self.dataset = self.create_dataset()
         self.dataloader = torch.utils.data.DataLoader(
             self.dataset,
-            batch_size=opt.batch_size,
-            shuffle=not opt.serial_batches,
-            num_workers=int(opt.n_threads)
+            batch_size = opt.batch_size,
+            shuffle = not opt.serial_batches,
+            num_workers = int(opt.n_threads)
         )
 
     def __len__(self):
