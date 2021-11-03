@@ -53,15 +53,15 @@ class CKPlusResDataset(BaseDataset):
 
         lucky_dict = {}
         # [0, 1] color 
-        img_tensor = self.img_transform(self.get_img_by_path(img_path), self.opt.use_data_augment, norm_tensor=False, lucky_dict=lucky_dict)
+        img_tensor = self.img_transform(self.get_img_by_path(img_path), self.opt.use_data_augment, norm_tensor = False, lucky_dict = lucky_dict)
         data_dict['img_tensor'] = img_tensor
 
         # [0, 1] gray
-        img_tensor_gray = self.img_transform(self.get_img_by_path(img_path).convert('L'), self.opt.use_data_augment, norm_tensor=False, lucky_dict=lucky_dict)
+        img_tensor_gray = self.img_transform(self.get_img_by_path(img_path).convert('L'), self.opt.use_data_augment, norm_tensor = False, lucky_dict = lucky_dict)
         data_dict['img_tensor_gray'] = img_tensor_gray
 
         # [0, 1] gray
-        img_res_tensor = self.img_transform(self.get_img_res_by_cls(real_cls).convert('L'), self.opt.use_data_augment, norm_tensor=False, lucky_dict=lucky_dict)
+        img_res_tensor = self.img_transform(self.get_img_res_by_cls(real_cls).convert('L'), self.opt.use_data_augment, norm_tensor = False, lucky_dict = lucky_dict)
         data_dict['img_res_tensor'] = img_res_tensor
 
         return data_dict
