@@ -46,8 +46,7 @@ class DataLoader:
             self.dataset,
             batch_size = opt.batch_size,
             shuffle = not opt.serial_batches,
-            num_workers = int(opt.n_threads)
-        )
+            num_workers = int(opt.n_threads))
 
     def __len__(self):
         return min(len(self.dataset), self.opt.max_dataset_size)
