@@ -39,7 +39,7 @@ class BaseDataset(torch.utils.data.Dataset):
         img_type = 'L' if self.opt.img_nc == 1 else 'RGB'
         return Image.open(img_path).convert(img_type)
 
-    def img_transform(self, img, use_data_augment=False, norm_tensor=False, lucky_dict={}):
+    def img_transform(self, img, use_data_augment = False, norm_tensor = False, lucky_dict = {}):
         if norm_tensor:
             img2tensor = transforms.Compose([ # Để thực hiện nhiều phép biến đổi trên dữ liệu đầu vào, transforms hỗ trợ hàm compose để gộp các transforms lại.
                 transforms.ToTensor(),
