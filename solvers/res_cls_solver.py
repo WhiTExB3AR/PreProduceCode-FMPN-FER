@@ -68,18 +68,20 @@ class ResFaceClsSolver(BaseSolver):
                 results_dict['focus_face'].append(model.focus_face[0].cpu().float().numpy())
 
                 pred_cls = model.pred_cls.detach().cpu().numpy()
-                pred_cls = np.argmax(pred_cls, axis=1)
+                pred_cls = np.argmax(pred_cls, axis=1) # predicted class
                 pred_cls_list.extend(pred_cls)
 
                 real_cls = batch['real_cls'].detach().cpu().numpy().astype(int)
                 real_cls_list.extend(real_cls)
 
-        confusion_mat = confusion_matrix(real_cls_list, pred_cls_list, labels=list(range(opt.cls_nc)))
-        acc_num = accuracy_score(real_cls_list, pred_cls_list, normalize=False)
-        acc = float(acc_num) / len(dataset)
-        msg = "Acc: %.3f(%d/%d)" % (acc, acc_num, len(dataset))
-        print("=======> ", msg)
-        
+        # ------- Start: B3AR config code: Calculate accuracy for test -------
+        # confusion_mat = confusion_matrix(real_cls_list, pred_cls_list, labels=list(range(opt.cls_nc)))
+        # acc_num = accuracy_score(real_cls_list, pred_cls_list, normalize=False)
+        # acc = float(acc_num) / len(dataset)
+        # msg = "Acc: %.3f(%d/%d)" % (acc, acc_num, len(dataset))
+        # print("=======> ", msg)
+        # ------- End: Start: B3AR config code: Calculate accuracy for test -------
+
         print("**********")
 
         print("Real label list: ", real_cls_list)
@@ -94,5 +96,5 @@ class ResFaceClsSolver(BaseSolver):
 
         print("**********")
         
-        return acc, msg, confusion_mat, results_dict
-
+        # return acc, msg, confusion_mat, results_dict # không có nhu cầu in ra về độ chính xác
+        return results_dict
