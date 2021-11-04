@@ -36,7 +36,7 @@ class CKPlusResDataset(BaseDataset):
         # do not use offline data augmentation
         imgs = []
         assert os.path.isfile(imgs_name_file), "File '%s' does not exist." % imgs_name_file
-        with open(imgs_name_file, 'r') as f:
+        with open(imgs_name_file, 'r') as f: # duyệt từng dòng trong file csv
             lines = f.readlines()
             imgs = [os.path.join(imgs_dir, line.strip()) for line in lines]
             imgs = sorted(imgs)
