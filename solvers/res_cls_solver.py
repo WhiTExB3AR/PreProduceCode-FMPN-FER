@@ -84,11 +84,11 @@ class ResFaceClsSolver(BaseSolver):
 
         print("**********")
 
-        print("Real label list: ", real_cls_list)
-        for i in range(len(real_cls_list)):
-            print(real_cls_list[i], self.CK_FACIAL_EXPRESSION[real_cls_list[i]])
+        # print("Real label list: ", real_cls_list)
+        # for i in range(len(real_cls_list)):
+        #     print(real_cls_list[i], self.CK_FACIAL_EXPRESSION[real_cls_list[i]])
 
-        print("\n")
+        # print("\n")
 
         print("Predict label list: ", pred_cls_list)
         for i in range(len(pred_cls_list)):
