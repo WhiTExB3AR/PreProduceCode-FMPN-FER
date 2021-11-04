@@ -55,24 +55,24 @@ class ResFaceClsSolver(BaseSolver):
         # go through all the dataset and generate map
         dataset, model = self.init_test_setting(opt)
         # print("Test networks: ", model.is_train)
-        results_dict = {'real_img': [], 'gen_resface': [], 'focus_face': []}
-        real_cls_list = []
+        # results_dict = {'real_img': [], 'gen_resface': [], 'focus_face': []}
+        # real_cls_list = []
         pred_cls_list = []
         for idx, batch in enumerate(dataset):
             with torch.no_grad():
                 model.feed_batch(batch)
                 model.forward()
 
-                results_dict['real_img'].append(model.real_img[0].cpu().float().numpy())
-                results_dict['gen_resface'].append(model.gen_resface[0].cpu().float().numpy())
-                results_dict['focus_face'].append(model.focus_face[0].cpu().float().numpy())
+                # results_dict['real_img'].append(model.real_img[0].cpu().float().numpy())
+                # results_dict['gen_resface'].append(model.gen_resface[0].cpu().float().numpy())
+                # results_dict['focus_face'].append(model.focus_face[0].cpu().float().numpy())
 
                 pred_cls = model.pred_cls.detach().cpu().numpy()
                 pred_cls = np.argmax(pred_cls, axis=1) # predicted class
                 pred_cls_list.extend(pred_cls)
 
                 real_cls = batch['real_cls'].detach().cpu().numpy().astype(int)
-                real_cls_list.extend(real_cls)
+                # real_cls_list.extend(real_cls)
 
         # ------- Start: B3AR config code: Calculate accuracy for test -------
         # confusion_mat = confusion_matrix(real_cls_list, pred_cls_list, labels=list(range(opt.cls_nc)))
