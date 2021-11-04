@@ -71,7 +71,7 @@ class ResFaceClsSolver(BaseSolver):
                 pred_cls = np.argmax(pred_cls, axis=1) # predicted class
                 pred_cls_list.extend(pred_cls)
 
-                real_cls = batch['real_cls'].detach().cpu().numpy().astype(int)
+                # real_cls = batch['real_cls'].detach().cpu().numpy().astype(int)
                 # real_cls_list.extend(real_cls)
 
         # ------- Start: B3AR config code: Calculate accuracy for test -------
@@ -97,4 +97,4 @@ class ResFaceClsSolver(BaseSolver):
         print("**********")
         
         # return acc, msg, confusion_mat, results_dict # không có nhu cầu in ra về độ chính xác
-        return results_dict
+        return pred_cls
