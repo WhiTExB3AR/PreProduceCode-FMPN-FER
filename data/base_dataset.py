@@ -1,5 +1,6 @@
 import torch
 import os
+import csv # for write filename img to csv file
 from PIL import Image
 import random
 import numpy as np
@@ -14,16 +15,16 @@ class BaseDataset(torch.utils.data.Dataset):
         super(BaseDataset, self).__init__()
 
     def name(self):
-        return os.path.basename(self.opt.data_root.strip('/'))
+        return os.path.basename(self.opt.data_root.strip('\/')) # strip('/') xoá dấu '/' ở đầu và đuôi của data_root
 
     def initialize(self, opt):
         self.opt = opt
 
-        self.imgs_dir = os.path.join(self.opt.data_root, self.opt.imgs_dir)
-        filename = self.opt.train_csv if self.opt.mode == "train" else self.opt.test_csv
-        self.cur_fold = os.path.splitext(filename)[0].split('_')[-1]
-        self.imgs_name_file = os.path.join(self.opt.data_root, filename)
-        self.imgs_path = self.make_dataset(self.imgs_dir, self.imgs_name_file)
+        self.imgs_dir = os.path.join(self.opt.data_root, self.opt.imgs_dir) # opt.data_root = datasets/CKPlus và opt.imgs_dir = imgs -> imgs_dir = datasets/CKPlus/imgs
+        filename = self.opt.train_csv if self.opt.mode == "train" else self.opt.test_csv # lấy tên của file img trong file csv -> filename = test_ids_8.csv
+        self.cur_fold = os.path.splitext(filename)[0].split('_')[-1] # lấy đuôi id của file csv, vd: test_ids_8.csv -> cur_fold = 8
+        self.imgs_name_file = os.path.join(self.opt.data_root, filename) # lấy tất cả các tên file img trong record của file csv -> imgs_name_file = datasets/CKPlus/test_ids_8.csv
+        self.imgs_path = self.make_dataset(self.imgs_dir, self.imgs_name_file) # xem cách hoạt động bên line 35 ckplus_res.py hoặc line 23 affecnet.py -> imgs_path = duyệt qua từng dòng ảnh trên file csv
 
     def make_dataset(self, imgs_dir, imgs_name_file):
         return None
@@ -35,6 +36,7 @@ class BaseDataset(torch.utils.data.Dataset):
         return saved_dict
 
     def get_img_by_path(self, img_path):
+        print('****img_path = ', img_path)
         assert os.path.isfile(img_path), "Cannot find image file: %s" % img_path
         img_type = 'L' if self.opt.img_nc == 1 else 'RGB'
         return Image.open(img_path).convert(img_type)
@@ -48,7 +50,7 @@ class BaseDataset(torch.utils.data.Dataset):
         else:
             img2tensor = transforms.ToTensor() # Dữ liệu mình lấy được ở trên thì ảnh ở dạng PIL image, mình cần convert về dạng Torch tensor để cho Pytorch xử lý và tính toán.
 
-        img = transforms.functional.resize(img, self.opt.load_size)
+        img = transforms.functional.resize(img, self.opt.load_size) # opt.load_size = 320
         # on-the-fly data augmentation
         if self.opt.mode == "train" and use_data_augment:
             # scale and crop 
@@ -63,7 +65,7 @@ class BaseDataset(torch.utils.data.Dataset):
             if not lucky_dict:
                 lucky_dict.update({'crop': lucky_num_crop, 'flip': lucky_num_flip})
         else:
-            img = transforms.functional.five_crop(img, self.opt.final_size)[-1]  # center crop
+            img = transforms.functional.five_crop(img, self.opt.final_size)[-1]  # center crop # opt.final_size = 299
 
         # print(lucky_dict)
         return img2tensor(img)
