@@ -27,7 +27,6 @@ class UserDataResDataset(BaseDataset):
             lines = f.readlines()
             imgs = [os.path.join(imgs_dir, line.strip()) for line in lines]
             imgs = sorted(imgs)
-        print('*********imgs = ', imgs)
         return imgs
 
     def __getitem__(self, index):
