@@ -29,6 +29,10 @@ pip install virtualenv
 ``` sh
 virtualenv env
 ```
+or Mac/Linux:
+``` sh
+python3 -m venv env
+```
 
 #### Check and set ExecutionPolicy on Windows follow this tutorial:
 ``` sh
