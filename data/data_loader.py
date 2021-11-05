@@ -10,7 +10,7 @@ from .ckplus_res import CKPlusResDataset
 from .mmi_res import MMIResDataset
 from .affectnet import AffectNetDataset
 from .base_dataset import BaseDataset
-from .user_res import UserDataResDataset
+from .userdata import UserDataset
 
 
 def create_dataloader(opt):
@@ -37,7 +37,7 @@ class DataLoader:
             dataset = AffectNetDataset()
         else:
             # dataset = BaseDataset()
-            dataset = UserDataResDataset()
+            dataset = UserDataset()
         dataset.initialize(self.opt)
         return dataset
 
