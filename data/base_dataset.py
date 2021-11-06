@@ -15,7 +15,7 @@ class BaseDataset(torch.utils.data.Dataset):
         super(BaseDataset, self).__init__()
 
     def name(self):
-        return os.path.basename(self.opt.data_root.strip('\/')) # strip('/') xoá dấu '/' ở đầu và đuôi của data_root
+        return os.path.basename(self.opt.data_root.strip('/')) # strip('/') xoá dấu '/' ở đầu và đuôi của data_root
 
     def initialize(self, opt):
         self.opt = opt
