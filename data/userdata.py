@@ -20,7 +20,7 @@ class UserDataset(BaseDataset):
 
     # Hàm duyệt file ảnh trong thư mục imgs của user để đưa vào file csv
     def filename2csv(self, imgs_dir, imgs_name_file):
-        f = open(imgs_name_file,'w') # csv file
+        f = open(imgs_name_file,'w', newline = '') # mở csv file và không xuống hàng mới
         w = csv.writer(f)
         for path, dirs, files in os.walk(imgs_dir): # imgs folder
             for filename in files:
