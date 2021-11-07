@@ -42,8 +42,6 @@ class UserDataset(BaseDataset):
 
         img_path = self.imgs_path[index]
         data_dict['img_path'] = img_path
-
-        print('****img_path in userData = ', img_path)
         
         lucky_dict = {}
         # [0, 1] color 
