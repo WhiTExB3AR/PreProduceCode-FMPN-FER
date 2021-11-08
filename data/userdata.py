@@ -20,21 +20,25 @@ class UserDataset(BaseDataset):
 
     # Hàm duyệt file ảnh trong thư mục imgs của user để đưa vào file csv
     def filename2csv(self, imgs_dir, imgs_name_file):
+        print ("print: filenames in folder -> file.csv")
         f = open(imgs_name_file,'w', newline = '') # mở csv file và không xuống hàng mới
         w = csv.writer(f)
         for path, dirs, files in os.walk(imgs_dir): # imgs folder
             for filename in files:
                 w.writerow([filename])
+        print("...Done print")
         return imgs_name_file
 
     def make_dataset(self, imgs_dir, imgs_name_file):
         imgs = []
         assert os.path.isfile(imgs_name_file), "File '%s' does not exist." % imgs_name_file
         self.filename2csv(imgs_dir, imgs_name_file) # gọi hàm duyệt ảnh thành từng dòng row trong file csv
+        print ("travel: rows in file.csv -> image")
         with open(imgs_name_file, 'r') as f: # duyệt từng dòng ảnh trong file csv
             lines = f.readlines()
             imgs = [os.path.join(imgs_dir, line.strip()) for line in lines]
             imgs = sorted(imgs)
+        print ("...Done travel")
         return imgs
 
     def __getitem__(self, index):
