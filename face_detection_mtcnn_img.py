@@ -18,9 +18,9 @@ detector = MTCNN()
 # construct the argument parser and parse the arguments
 parser = argparse.ArgumentParser()
 parser.add_argument("-img", "--image", 
-                    type=str, 
-                    required=True, 
-                    help="path to input image")
+    type=str, 
+    required=True, 
+    help="path to input image")
 args = vars(parser.parse_args())
 
 # image_org = cv2.cvtColor(cv2.imread(args["image"]), cv2.COLOR_BGR2RGB)
