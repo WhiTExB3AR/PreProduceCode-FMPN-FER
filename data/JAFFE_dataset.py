@@ -26,7 +26,7 @@ class JAFFEDataset(BaseDataset):
     def get_cls_by_path(self, img_path):
         sub_seq = os.path.splitext(os.path.basename(img_path))[0]
         sub_seq = '_'.join(sub_seq.split('_')[:2])
-        cls_label = self.cls_dict[sub_seq] - 1  # convert [1, 7] to [0, 6] for CK+ dataset label way
+        cls_label = self.cls_dict[sub_seq] - 1  # convert [1, 7] to [0, 6] for JAFFE dataset label way
         return cls_label
 
     def get_img_res_by_cls(self, img_cls):
