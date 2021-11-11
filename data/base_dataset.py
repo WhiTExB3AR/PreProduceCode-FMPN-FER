@@ -36,9 +36,10 @@ class BaseDataset(torch.utils.data.Dataset):
         return saved_dict
 
     def get_img_by_path(self, img_path):
-        print('****img_path before isfile in base_dataset = ', img_path)
+        # print('****img_path before isfile in base_dataset = ', img_path)
         assert os.path.isfile(img_path), "Cannot find image file: %s" % img_path
-        print('****img_path after isfile in base_dataset = ', img_path)
+        # print('****img_path after isfile in base_dataset = ', img_path)
+        # print("...getting image by path in csv file...")
         img_type = 'L' if self.opt.img_nc == 1 else 'RGB'
         return Image.open(img_path).convert(img_type)
 
