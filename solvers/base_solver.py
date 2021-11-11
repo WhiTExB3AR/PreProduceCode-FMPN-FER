@@ -22,6 +22,7 @@ class BaseSolver(object):
 
         self.CK_FACIAL_EXPRESSION = ['anger', 'contempt', 'disgust', 'fear', 'happy', 'sadness', 'surprise']
         self.OC_FACIAL_EXPRESSION = ['Anger', 'Disgust', 'Fear', 'Happiness', 'Sadness', 'Surprise']
+        self.JA_FACIAL_EXPRESSION = ['anger', 'disgust', 'fear', 'happy', 'sadness', 'surprise']
 
     def run_solver(self):
         if self.opt.mode == "train":
@@ -49,10 +50,18 @@ class BaseSolver(object):
     def init_train_setting(self):
         self.train_dataset = create_dataloader(self.opt)
         self.train_model = create_model(self.opt)
-        if 'CK' in self.train_dataset.name() or 'Affect' in self.train_dataset.name():
-            self.FACIAL_EXPRESSION = self.CK_FACIAL_EXPRESSION
+        # if 'CK' in self.train_dataset.name() or 'Affect' in self.train_dataset.name():
+        #     self.FACIAL_EXPRESSION = self.CK_FACIAL_EXPRESSION
+        # else:
+        #     self.FACIAL_EXPRESSION = self.OC_FACIAL_EXPRESSION
+
+        if 'CK' in self.train_dataset.name():
+          self.FACIAL_EXPRESSION = self.CK_FACIAL_EXPRESSION
+        elif 'JAFFE' in self.train_dataset.name():
+          self.FACIAL_EXPRESSION = self.OC_FACIAL_EXPRESSION
         else:
-            self.FACIAL_EXPRESSION = self.OC_FACIAL_EXPRESSION
+            self.FACIAL_EXPRESSION = self.JA_FACIAL_EXPRESSION
+           
 
         self.train_total_steps = 0
         self.epoch_len = self.opt.niter + self.opt.niter_decay # total epoch calculated from params niter and niter_decay in options.py
