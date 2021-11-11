@@ -11,6 +11,7 @@ from .mmi_res import MMIResDataset
 from .affectnet import AffectNetDataset
 from .base_dataset import BaseDataset
 from .userdata import UserDataset
+from .JAFFE_dataset import JAFFEDataset
 
 
 def create_dataloader(opt):
@@ -31,10 +32,12 @@ class DataLoader:
         loaded_dataset = os.path.basename(self.opt.data_root.strip('/'))
         if 'CK' in loaded_dataset:
             dataset = CKPlusResDataset()
-        elif 'MMI' in loaded_dataset:
-            dataset = MMIResDataset()
+        # elif 'MMI' in loaded_dataset:
+        #     dataset = MMIResDataset()
         elif 'Affect' in loaded_dataset:
             dataset = AffectNetDataset()
+        elif 'JAFFE' in loaded_dataset:
+            dataset = JAFFEDataset()        
         else:
             # dataset = BaseDataset()
             dataset = UserDataset()
