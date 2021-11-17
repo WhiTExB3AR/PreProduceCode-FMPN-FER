@@ -55,24 +55,30 @@ class ResFaceClsSolver(BaseSolver):
         # go through all the dataset and generate map
         dataset, model = self.init_test_setting(opt)
         # print("Test networks: ", model.is_train)
+        # ------- Start: B3AR config code: Calculate accuracy for test -------
         # results_dict = {'real_img': [], 'gen_resface': [], 'focus_face': []}
         # real_cls_list = []
+        # ------- End: Start: B3AR config code: Calculate accuracy for test -------
         pred_cls_list = []
         for idx, batch in enumerate(dataset):
             with torch.no_grad():
                 model.feed_batch(batch)
                 model.forward()
 
+                # ------- Start: B3AR config code: Calculate accuracy for test -------
                 # results_dict['real_img'].append(model.real_img[0].cpu().float().numpy())
                 # results_dict['gen_resface'].append(model.gen_resface[0].cpu().float().numpy())
                 # results_dict['focus_face'].append(model.focus_face[0].cpu().float().numpy())
+                # ------- End: Start: B3AR config code: Calculate accuracy for test -------
 
                 pred_cls = model.pred_cls.detach().cpu().numpy()
                 pred_cls = np.argmax(pred_cls, axis=1) # predicted class
                 pred_cls_list.extend(pred_cls)
 
+                # ------- Start: B3AR config code: Calculate accuracy for test -------
                 # real_cls = batch['real_cls'].detach().cpu().numpy().astype(int)
                 # real_cls_list.extend(real_cls)
+                # ------- End: Start: B3AR config code: Calculate accuracy for test -------
 
         # ------- Start: B3AR config code: Calculate accuracy for test -------
         # confusion_mat = confusion_matrix(real_cls_list, pred_cls_list, labels=list(range(opt.cls_nc)))
@@ -95,6 +101,9 @@ class ResFaceClsSolver(BaseSolver):
             print(pred_cls_list[i], self.CK_FACIAL_EXPRESSION[pred_cls_list[i]])
 
         print("**********")
-        
+    
+        # ------- Start: B3AR config code: Calculate accuracy for test -------
         # return acc, msg, confusion_mat, results_dict # không có nhu cầu in ra về độ chính xác
+        # ------- End: Start: B3AR config code: Calculate accuracy for test -------
+
         return pred_cls
