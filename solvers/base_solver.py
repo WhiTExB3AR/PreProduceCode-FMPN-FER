@@ -58,9 +58,9 @@ class BaseSolver(object):
         if 'CK' in self.train_dataset.name():
           self.FACIAL_EXPRESSION = self.CK_FACIAL_EXPRESSION
         elif 'JAFFE' in self.train_dataset.name():
-          self.FACIAL_EXPRESSION = self.OC_FACIAL_EXPRESSION
+          self.FACIAL_EXPRESSION = self.JA_FACIAL_EXPRESSION
         else:
-            self.FACIAL_EXPRESSION = self.JA_FACIAL_EXPRESSION
+            self.FACIAL_EXPRESSION = self.OC_FACIAL_EXPRESSION
            
 
         self.train_total_steps = 0
