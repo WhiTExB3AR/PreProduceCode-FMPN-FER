@@ -1,1 +1,0 @@
-[train][211024_033139]python main.py --mode train --data_root datasets/CKPlus --train_csv train_ids_8.csv --print_losses_freq 4 --use_data_augment --visdom_env main --niter 50 --niter_decay 50 --gpu_ids 0 --batch_size 16 --model res_baseline --solver resface --img_nc 1 --visdom_port 80 --visdom_ip http://6f46-2405-4800-52a7-232f-ed31-dec5-a662-7c6d.ngrok.io
