@@ -67,6 +67,18 @@ deactivate
 ``` sh
 pip install -r requirements.txt
 ```
+| Requirements   | version        |
+|----------------|----------------|
+| visdom         | 0.1.8.9        |
+| torch          | 1.10.0+cu113   |
+| torchvision    | 0.11.1+cu113   |
+| torchaudio     | 0.10.0+cu113   |
+| pyngrok        | 5.1.0          |
+| nest_asyncio   | 1.5.1          |
+| opencv-python  | 4.5.4.58       |
+| tensorflow-gpu | 2.6.0          |
+| mtcnn          | 0.1.1          |
+| imutils        | 0.5.4          |
 
 #### Now you can run the project with this command
 
