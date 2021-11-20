@@ -1,0 +1,1 @@
+[train][211119_045617]python main.py --mode train --data_root datasets/JAFFE --train_csv trainJA_ids_9.csv --print_losses_freq 4 --use_data_augment --visdom_env main_baseline_ckp_9 --niter 100 --niter_decay 100 --gpu_ids 0 --model res_baseline --solver resface --img_nc 1 --visdom_port 80 --visdom_ip http://684b-2405-4800-52a7-1c4f-9969-b0c-9d03-6934.ngrok.io/
