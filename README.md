@@ -172,6 +172,11 @@ python main.py --mode test --data_root datasets/CKPlus --test_csv test_ids_1.csv
 * The pseudo ground truth facial motion masks for dataset CK+, MMI and AffectNet are presented in `/datasets`.
 * Training and Testing datasets splits are located in `/datasets`, 10-fold cross validation is used in the project as a general approach.
 
+| Fold ID   | 0     | 1     | 2     | 3     | 4     | 5     | 6     | 7     | 8     | 9     | Avg  |
+|-----------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|------|
+| CK+       | 0.850 | 0.895 | 1.000 | 1.000 | 1.000 | 0.444 | 0.529 | 0.778 | 0.833 | 0.895 | 0.82 |
+| JAFFE     |   -   |   -   |   -   |   -   |   -   |   -   |   -   |   -   |   -   |   -   |   -  |
+
 ## Citation - References
 
 If you use this code for your research, please cite our paper <a href="https://arxiv.org/abs/1902.08788">Facial Motion Prior Networks for Facial Expression Recognition</a>:
