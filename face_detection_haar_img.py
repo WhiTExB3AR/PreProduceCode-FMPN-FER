@@ -92,10 +92,10 @@ i = 0 # for each face focus
 for (x, y, w, h) in faces_result:
     print(x,y,w,h)
     crop_face = gray[y:y+h, x:x+w]
-    cv2.imwrite('images/results/face_focus/haar' +
+    cv2.imwrite('images/results/face_focus/haar/' +
                 str(file_name_pathlib) +
-                'HAAR_face_' +
-                str(i) +
+                # 'HAAR_face_' +
+                # str(i) +
                 '.png', 
                 crop_face)
     cv2.imshow("Cropped face.png", crop_face)
