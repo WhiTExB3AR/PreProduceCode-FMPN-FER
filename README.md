@@ -172,10 +172,33 @@ python main.py --mode test --data_root datasets/CKPlus --test_csv test_ids_1.csv
 * The pseudo ground truth facial motion masks for dataset CK+, MMI and AffectNet are presented in `/datasets`.
 * Training and Testing datasets splits are located in `/datasets`, 10-fold cross validation is used in the project as a general approach.
 
-| Fold ID   | 0     | 1     | 2     | 3     | 4     | 5     | 6     | 7     | 8     | 9     | Avg  |
+|  Fold ID  | 0     | 1     | 2     | 3     | 4     | 5     | 6     | 7     | 8     | 9     | Avg  |
 |-----------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|------|
-|  JAFFE    | 0.850 | 0.895 | 1.000 | 1.000 | 1.000 | 0.444 | 0.529 | 0.778 | 0.833 | 0.895 | 0.82 |
-|   CK+     | 0.654 | 0.917 | 0.860 | 0.911 | 0.944 | 0.989 | 0.973 | 0.972 | 0.974 | 0.964 | 0.92 |
+|   JAFFE   | 0.850 | 0.895 | 1.000 | 1.000 | 1.000 | 0.444 | 0.529 | 0.778 | 0.833 | 0.895 | 0.82 |
+|    CK+    | 0.654 | 0.917 | 0.860 | 0.911 | 0.944 | 0.989 | 0.973 | 0.972 | 0.974 | 0.964 | 0.92 |
+
+## Classification Report of JAFFE datasets
+
+| Label | Precision | Recall | F1 - Score |
+|-------|-----------|--------|------------|
+|   AN  |   0.786   |  0.963 |    0.844   |
+|   DI  |   0.904   |  0.875 |    0.849   |
+|   FE  |   0.922   |  0.927 |    0.907   |
+|   HA  |   0.944   |  0.963 |    0.947   |
+|   SA  |   0.906   |  0.834 |    0.716   |
+|   SU  |   0.910   |  0.967 |    0.932   |
+
+## Classification Report of CKPlus datasets
+
+| Label | Precision | Recall | F1 - Score |
+|-------|-----------|--------|------------|
+|   AN  |   0.888   |  0.855 |    0.853   |
+|   CO  |   0.975   |  0.780 |    0.855   |
+|   DI  |   0.987   |  0.951 |    0.967   |
+|   FE  |   0.952   |  0.898 |    0.909   |
+|   HA  |   0.993   |  0.986 |    0.986   |
+|   SA  |   0.865   |  0.867 |    0.844   |
+|   SU  |   0.900   |  0.974 |    0.968   |
 
 ## Citation - References
 
