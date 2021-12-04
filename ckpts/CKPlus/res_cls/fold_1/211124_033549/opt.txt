@@ -55,3 +55,60 @@
 --------------------- [train][211124_033549]End ----------------------
 
 
+------------------- [ test][211203_124500]Options --------------------
+         backend_pretrain: False                         
+               batch_size: 1                             	[default: 32]
+                    beta1: 0.5                           
+                 ckpt_dir: ./ckpts                       
+              cls_backend: inception                     
+                   cls_nc: 7                             
+                 cls_norm: batch                         
+                  cls_pkl: emotion_labels.pkl            
+                data_root: images/userData               	[default: None]
+              epoch_count: 1                             
+               final_size: 299                           
+                  gpu_ids: [0]                           	[default: 0]
+                   img_nc: 3                             
+                 imgs_dir: imgs                          
+             imgs_res_dir: imgs_res                      
+                init_gain: 0.02                          
+                init_type: xavier                        
+               lambda_cls: 1.0                           
+           lambda_resface: 0.1                           
+               load_epoch: 50                            	[default: 0]
+           load_model_dir: ckpts/CKPlus/res_cls/fold_1/211124_033549	[default: ./checkpoints]
+                load_size: 320                           
+                 log_file: losses.log                    
+                       lr: 0.0001                        
+           lr_decay_iters: 50                            
+                lr_policy: lambda                        
+               lucky_seed: 1638510301                    	[default: 0]
+         max_dataset_size: inf                           
+                     mode: test                          	[default: train]
+                    model: res_cls                       
+                n_threads: 1                             	[default: 12]
+                     name: 211203_124500                 
+                    niter: 200                           
+              niter_decay: 100                           
+                     norm: instance                      
+             optim_policy: adam                          
+        print_losses_freq: 4                             
+                   res_lr: 1e-05                         
+             res_n_blocks: 4                             
+                 res_norm: batch                         
+          res_use_dropout: False                         
+          sample_img_freq: 5                             
+          save_epoch_freq: 200                           
+           serial_batches: False                         
+                   solver: res_cls                       
+                 test_csv: run_ids_0.csv                 	[default: test_ids.csv]
+                train_csv: train_ids.csv                 
+          use_cls_dropout: False                         
+         use_data_augment: False                         
+        visdom_display_id: 1                             
+               visdom_env: main                          
+                visdom_ip: http://9850-2405-4800-529f-13a5-4d-e24f-ded-284f.ngrok.io	[default: http://localhost]
+              visdom_port: 80                            	[default: 8097]
+--------------------- [ test][211203_124500]End ----------------------
+
+
