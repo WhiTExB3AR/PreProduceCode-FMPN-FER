@@ -167,6 +167,19 @@ python main.py --mode test --data_root datasets/CKPlus --test_csv test_ids_1.csv
     /
 ```
 
+## Label of expression
+
+| Expression | Label |
+|------------|-------|
+|   Anger    |   1   |
+|  Contempt  |   2   |
+|   Digust   |   3   |
+|    Fear    |   4   |
+|    Happy   |   5   |
+|   Sadness  |   6   |
+|  Surprise  |   7   |
+|   Neutral  |   0   |
+
 ## Datasets
 
 * The pseudo ground truth facial motion masks for dataset CK+, MMI and AffectNet are presented in `/datasets`.
