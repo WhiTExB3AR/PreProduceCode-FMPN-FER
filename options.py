@@ -44,7 +44,7 @@ class Options(object):
         parser.add_argument('--load_size', type=int, default=320, help='scale image to this size.')
         parser.add_argument('--final_size', type=int, default=299, help='crop image to this size.')
         
-        parser.add_argument('--gpu_ids', type=str, default='0', help='gpu ids, eg. 0,1,2; -1 for cpu.')
+        parser.add_argument('--gpu_ids', type=str, default='0', help='gpu ids, eg. 0,1,2; -1 for cpu.') # torch.device
         parser.add_argument('--ckpt_dir', type=str, default='./ckpts', help='directory to save check points.')
         parser.add_argument('--load_model_dir', type=str, default='./checkpoints', help='directory to load pretrained model.')
         parser.add_argument('--load_epoch', type=int, default=0, help='load epoch; 0: do not load')
@@ -155,6 +155,11 @@ class Options(object):
                 opt.gpu_ids.append(cur_id)
         if len(opt.gpu_ids) > 0:
             torch.cuda.set_device(opt.gpu_ids[0])
+
+        # ------- Start: B3AR config code -------
+        elif len(opt.gpu_ids) == -1:
+           torch.cuda.set_device('cpu')
+        # ------- End: B3AR config code -------
 
         # set seed 
         if opt.lucky_seed == 0:
