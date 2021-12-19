@@ -3,6 +3,7 @@ import os
 from collections import OrderedDict
 import random
 
+# https://pytorch.org/tutorials/recipes/recipes/save_load_across_devices.html
 
 class BaseModel:
     """docstring for BaseModel"""
@@ -11,8 +12,20 @@ class BaseModel:
 
     def initialize(self, opt):
         self.opt = opt
-        self.gpu_ids = self.opt.gpu_ids
-        self.device = torch.device('cuda:%d' % self.gpu_ids[0] if self.gpu_ids else 'cpu')
+        
+        # ------- Start: B3AR config code -------
+        # self.gpu_ids = self.opt.gpu_ids
+        # ------- End: B3AR config code -------
+        if torch.cuda.is_available():
+            self.gpu_ids = self.opt.gpu_ids
+        else: 
+            self.gpu_ids = None
+
+        # ------- Start: B3AR config code -------
+        # self.device = torch.device('cuda:%d' % self.gpu_ids[0] if self.gpu_ids else 'cpu')
+        # ------- End: B3AR config code -------
+        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
         self.is_train = self.opt.mode == "train"
         # inherit to define network model 
         self.models_name = []
