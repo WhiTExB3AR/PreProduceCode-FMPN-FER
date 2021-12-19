@@ -14,17 +14,19 @@ class BaseModel:
         self.opt = opt
         
         # ------- Start: B3AR config code -------
-        # self.gpu_ids = self.opt.gpu_ids
+        self.gpu_ids = self.opt.gpu_ids
+
+        # if torch.cuda.is_available():
+        #     self.gpu_ids = self.opt.gpu_ids
+        # else: 
+        #     self.gpu_ids = None
         # ------- End: B3AR config code -------
-        if torch.cuda.is_available():
-            self.gpu_ids = self.opt.gpu_ids
-        else: 
-            self.gpu_ids = None
 
         # ------- Start: B3AR config code -------
-        # self.device = torch.device('cuda:%d' % self.gpu_ids[0] if self.gpu_ids else 'cpu')
+        self.device = torch.device('cuda:%d' % self.gpu_ids[0] if self.gpu_ids else 'cpu')
+
+        # self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         # ------- End: B3AR config code -------
-        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
         self.is_train = self.opt.mode == "train"
         # inherit to define network model 
