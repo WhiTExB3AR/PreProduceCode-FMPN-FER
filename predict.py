@@ -2,6 +2,7 @@ import torchvision.transforms as transforms
 from PIL import Image
 import torch
 import numpy as np
+import pickle
 
 from model import create_model
 from options import Options
@@ -72,20 +73,23 @@ def transform_image(image):
 
 if __name__ == '__main__':
     options = Options().parse()
-    input_img = Image.open('datasets/AffectNet/imgs/train_set/0.jpg').convert('RGB')
-    input_img_2 = Image.open('datasets/AffectNet/imgs/train_set/0.jpg').convert('L')
-    instance = ResFaceClsSolver()
-    instance.initialize(options)
+    with open('options.pkl','wb') as f:
+        pickle.dump(options,f)
 
-    t_img = transform_image(input_img).unsqueeze(1)
-    t_img_2 = transform_image(input_img_2).unsqueeze(1)
-
-    batch = {
-        'img_tensor': t_img,
-        'img_tensor_gray': t_img_2,
-        'img_res_tensor': t_img_2,
-        'img_path': 'datasets'
-    }
-
-    rs = instance.test_networks(options, batch)
-    print(rs)
+    # input_img = Image.open('datasets/AffectNet/imgs/train_set/0.jpg').convert('RGB')
+    # input_img_2 = Image.open('datasets/AffectNet/imgs/train_set/0.jpg').convert('L')
+    # instance = ResFaceClsSolver()
+    # instance.initialize(options)
+    #
+    # t_img = transform_image(input_img).unsqueeze(0)
+    # t_img_2 = transform_image(input_img_2).unsqueeze(0)
+    #
+    # batch = {
+    #     'img_tensor': t_img,
+    #     'img_tensor_gray': t_img_2,
+    #     'img_res_tensor': t_img_2,
+    #     'img_path': 'datasets'
+    # }
+    #
+    # rs = instance.test_networks(options, batch)
+    # print(rs)
