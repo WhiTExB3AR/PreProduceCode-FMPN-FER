@@ -1,1 +1,0 @@
-Preprocess the CK+ dataset, and store all images directly into this folder.
