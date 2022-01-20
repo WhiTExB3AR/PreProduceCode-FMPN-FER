@@ -178,7 +178,7 @@ python main.py --mode test --data_root datasets/CKPlus --test_csv test_ids_1.csv
 |    Happy   |   5   |
 |   Sadness  |   6   |
 |  Surprise  |   7   |
-|   Neutral  |   0   |
+|   Neutral  |  -1   |
 
 ## Datasets
 
