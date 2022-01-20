@@ -86,6 +86,9 @@ class ResFaceClsSolver(BaseSolver):
         # acc = float(acc_num) / len(dataset)
         # msg = "Acc: %.3f(%d/%d)" % (acc, acc_num, len(dataset))
         # print("=======> ", msg)
+        # report = classification_report(real_cls_list, pred_cls_list)
+        # print(">>>> Classification Report: \n", report)
+        # print(">>>> Confusion Matrix: \n", confusion_mat)
         # ------- End: Start: B3AR config code: Calculate accuracy for test -------
 
         print("**********")
@@ -96,9 +99,12 @@ class ResFaceClsSolver(BaseSolver):
 
         # print("\n")
 
-        print("Predict label list: ", pred_cls_list)
+        # print("Predict label list: ", pred_cls_list)
+        # for i in range(len(pred_cls_list)):
+        #     print("[", i + 1, "] Predict:", pred_cls_list[i], self.CK_FACIAL_EXPRESSION[pred_cls_list[i]], "- Actual: ", real_cls_list[i], self.CK_FACIAL_EXPRESSION[real_cls_list[i]])
+        
         for i in range(len(pred_cls_list)):
-            print("[", i + 1, "]", pred_cls_list[i], self.CK_FACIAL_EXPRESSION[pred_cls_list[i]])
+            print("[", i + 1, "] Predict:", pred_cls_list[i], self.CK_FACIAL_EXPRESSION[pred_cls_list[i]])
 
         print("**********")
     
