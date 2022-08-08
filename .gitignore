@@ -1,6 +1,5 @@
 # Source code
-datasets/AffectNet/
-datasets/MMI/
+datasets/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
