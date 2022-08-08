@@ -1,3 +1,7 @@
+# Source code
+datasets/AffectNet
+datasets/MMI
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
